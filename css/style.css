@@ -1,0 +1,282 @@
+@font-face {
+    font-family: "Sixtyfour";
+    src: url(../fonts/Sixtyfour.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --obstacle-move-duration: 3s;
+    --obstacle-start-position: 0px;
+    --jump-duration: 1s;
+    --animate-player-duration: 0.3s;
+    --canvas-width: 800px;
+    --canvas-height: 300px;
+    --player-width: 90px;
+    --player-height: 60px;
+    --obstacle-fizical-width: 100px;
+    --obstacle-narrow-width: 30px;
+    --obstacle-width: 50px;
+    --obstacle-wide-width: 80px;
+    --obstacle-height: 50px;
+    --obstacle-tall-height: 75px;
+    --jump-height: 150px;
+    --obstacle-move-distance: 0px;
+    --header-bg-color: #2c3e50;
+    --footer-bg-color: #2c3e50;
+    --header-text-color: #ffffff;
+    --footer-text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.game-header {
+    font-family: 'Sixtyfour', sans-serif;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    width: 100%;
+}
+
+.game-instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 0 auto;
+    margin: 1rem 0;
+    max-height: 4rem;
+}
+
+.instruction-text {
+    font-family: 'Sixtyfour', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.game-canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-section {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.game-footer {
+    font-family: 'Sixtyfour', sans-serif;
+    text-align: center;
+    padding: 15px;
+    background-color: var(--footer-bg-color);
+    color: var(--footer-text-color);
+    width: 100%;
+}
+
+.game-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.canvas {
+    width: var(--canvas-width);
+    height: var(--canvas-height);
+    display: flex;
+    flex-direction: column-reverse;
+    flex: 0 1 auto;
+}
+
+.moving_objects {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.ground {
+    width: 100%;
+    height: 50px;
+    background-image: url(../images/dino_ground.png);
+    background-size: 50px 50px;
+}
+
+.ground_height {
+    height: 50px;
+}
+
+.player {
+    width: var(--player-width);
+    height: var(--player-height);
+    background-image: url(../images/dino1.png);
+    background-size: cover;
+    transform-origin: bottom;
+}
+
+.left_side {
+    min-width: 400px;
+}
+
+.right_side {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    min-width: 400px;
+}
+
+.obstacles {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.icecream {
+    background-image: url(../images/iceCream.png);
+    background-size: var(--obstacle-narrow-width) var(--obstacle-height);
+    height: var(--obstacle-height);
+}
+
+.trashcan {
+    background-image: url(../images/trashcan.png);
+    background-size: var(--obstacle-narrow-width) var(--obstacle-height);
+    height: var(--obstacle-height);
+}
+
+.fence {
+    background-image: url(../images/obstace_1.png);
+    background-size: var(--obstacle-width) var(--obstacle-height);
+    height: var(--obstacle-height);
+}
+
+.tree {
+    background-image: url(../images/tree.png);
+    background-size: var(--obstacle-width) var(--obstacle-tall-height);
+    height: var(--obstacle-tall-height);
+}
+
+.car {
+    background-image: url(../images/car.png);
+    background-size: var(--obstacle-wide-width) var(--obstacle-height);
+    height: var(--obstacle-height);
+}
+
+.obstacle {
+    transform-origin: left;
+    width: var(--obstacle-fizical-width);
+    background-position-y: bottom;
+    background-position-x: left;
+    background-repeat: no-repeat;
+}
+
+.pause {
+    animation-play-state: paused;
+    background-position-y: bottom;
+}
+
+.jump {
+    animation-name: player_jump;
+    animation-duration: var(--jump-duration);
+    animation-timing-function: linear;
+}
+
+.move {
+    animation-name: obstacle_move;
+    animation-duration: var(--obstacle-move-duration);
+    animation-timing-function: linear;
+}
+
+.animate_player {
+    animation-name: animate_player;
+    animation-duration: var(--animate-player-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.dead {
+    background-image: url(../images/dino6.png) !important;
+}
+
+.score {
+    font-family: 'Sixtyfour', sans-serif;
+    font-size: 1.2rem;
+    margin: 20px;
+}
+
+.intro {
+    animation-name: intro;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+@keyframes animate_player {
+    20% {
+        background-image: url(../images/dino2.png);
+    }
+
+    40% {
+        background-image: url(../images/dino3.png);
+    }
+
+    60% {
+        background-image: url(../images/dino4.png);
+    }
+
+    80% {
+        background-image: url(../images/dino5.png);
+    }
+}
+
+@keyframes obstacle_move {
+
+    from {
+        transform: translateX(var(--obstacle-start-position));
+    }
+
+    to {
+        transform: translateX(var(--obstacle-move-distance));
+    }
+}
+
+@keyframes player_jump {
+    50% { transform: translateY(calc(var(--jump-height) * -1)); }
+}
+
+@keyframes intro {
+    50% { font-size: 4rem; }
+}
+
+@media screen and (max-width: 800px) {
+    :root {
+        --canvas-width: 400px;
+        --obstacle-move-duration: 2s;
+        --player-width: 60px;
+        --player-height: 40px;
+        --obstacle-fizical-width: 80px;
+        --obstacle-narrow-width: 20px;
+        --obstacle-width: 37px;
+        --obstacle-wide-width: 67px;
+        --obstacle-height: 37px;
+        --obstacle-tall-height: 50px;
+        --jump-height: 100px;
+        --jump-duration: 0.8s;
+    }
+}

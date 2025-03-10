@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="text/javascript" src="./scripts/game.js" defer></script>
+    <title>DINO JUMP</title>
+</head>
+<body>
+    <header class="game-header">
+        Help DINO get to the JOB interview!
+    </header>
+
+    <section class="game-instructions">
+      <div class="instruction-text">Press SPACE to START</div>
+    </section>
+
+    <section class="game-section">
+        <div class ="left_side"></div>
+        <div class="game-canvas">
+            <div class="canvas">
+                <div class="ground"></div>   
+                <div class="moving_objects">
+                    <div class="player"></div>
+                </div>
+            </div>
+        </div>   
+        <div class="right_side">
+            <div class="ground_height"></div>
+            <div class="obstacles">
+                <div class="obstacle"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="score-section">
+        <div class="score">Score: 0</div>
+        <div class="score top-score">TOP Score: 0</div>
+    </section>
+
+    <footer class="game-footer">
+        DINO JUMP ©
+    </footer>
+
+    <audio class="backgroundMusic" loop>
+        <source src="./sounds/epicMusic.mp3" type="audio/mp3">
+    </audio>
+    <audio class="jumpSound">
+        <source src="./sounds/jump.mp3" type="audio/mp3">
+    </audio>
+    <audio class="collisionSound">
+        <source src="./sounds/collusion.mp3" type="audio/mp3">
+    </audio>
+</body>
+</html>
